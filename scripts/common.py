@@ -60,10 +60,10 @@ def header(p, title, subtitle, right_top="", right_bottom="", status_dot=True):
     if right_top:
         out.append(f'<text x="872" y="34" font-size="11" text-anchor="end" fill="{p["text"]}">{esc(right_top)}</text>')
     if right_bottom:
-        out.append(f'<text x="872" y="52" font-size="9" letter-spacing="1" text-anchor="end" fill="{p["dim"]}">{esc(right_bottom)}</text>')
+        tx = 858 if status_dot else 872
+        out.append(f'<text x="{tx}" y="52" font-size="9" letter-spacing="1" text-anchor="end" fill="{p["dim"]}">{esc(right_bottom)}</text>')
         if status_dot:
-            x = 872 - len(right_bottom) * 6.9 - 10
-            out.append(f'<circle cx="{x:.1f}" cy="49" r="3" fill="{p["accent"]}">'
+            out.append(f'<circle cx="867" cy="49" r="3" fill="{p["accent"]}">'
                        f'<animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/></circle>')
     out.append(f'<line x1="28" y1="66" x2="872" y2="66" stroke="{p["line"]}"/>')
     return "\n".join(out) + "\n"

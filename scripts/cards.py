@@ -303,7 +303,7 @@ def hangar(data, prof, p, mode):
                      f'dur="{2.2 + i*0.17:.2f}s" repeatCount="indefinite"/></g>')
         else:
             light = p["amber"] if stt == "WARM" else None
-            s.append(drone(p, round(cx, 1), round(pad_y - arm * 0.55 - 6, 1), round(arm, 1), color, spin=False, light=light))
+            s.append(drone(p, round(cx, 1), round(pad_y - arm * 1.42 + 2, 1), round(arm, 1), color, spin=False, light=light))
         nc = p["accent"] if stt == "LIVE" else p["text"]
         s.append(f'<a href="{esc(r["url"])}"><text x="{cx:.1f}" y="{ground + 20}" font-size="11" font-weight="bold" '
                  f'text-anchor="middle" fill="{nc}">{esc(trunc(r["name"], chars - 1))}</text></a>')
