@@ -25,6 +25,15 @@
 </picture>
 
 <!-- manifest:start -->
+<details>
+<summary><b>OPEN THE HANGAR MANIFEST</b>: every airframe above, with links</summary>
+
+| AIRFRAME | LANG | STATUS | LAST PUSH | NOTE |
+|---|---|---|---|---|
+| [tonyp0](https://github.com/tonyp0/tonyp0) | Python | LIVE | 2026-10-08 | Config files for my GitHub profile. |
+| [Monetic](https://github.com/tonyp0/Monetic) | Swift | WARM | 2026-09-17 | Simple monthly budgeting app to support healthy finances and track your spending. |
+
+</details>
 <!-- manifest:end -->
 
 <picture>
