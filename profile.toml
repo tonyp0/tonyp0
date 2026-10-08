@@ -1,0 +1,20 @@
+# Everything on the PILOT ID card that isn't pulled from GitHub lives here.
+# Edit freely; the workflow re-renders the cards on every push to main.
+
+callsign = "TONY"
+
+# Portrait: crop box as fractions of the photo (left, top, right, bottom).
+# Delete the line to use a centred square crop.
+portrait = "assets/portrait.jpg"
+portrait_crop = [0.16, 0.41, 0.6, 0.78]
+
+# Up to 7 rows. A TELEMETRY row with live GitHub numbers is added after them.
+rows = [
+  { label = "ROLE",       value = "CS @ The University of Tulsa · Math + AI minors" },
+  { label = "MISSION",    value = "Seeking a Summer 2027 AI/ML internship" },
+  { label = "STACK",      value = "Python · Swift · SwiftUI · SwiftData" },
+  { label = "TRAINING",   value = "PyTorch · scikit-learn" },
+  { label = "FLIGHT HRS", value = "SWE Intern @ Cyphra Autonomy · UAV telemetry" },
+  { label = "PAYLOAD",    value = "Monetic · budgeting app for K-12 + college" },
+  { label = "CLASS OF",   value = "2029" },
+]
