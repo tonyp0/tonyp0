@@ -11,7 +11,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="pilot_id_dark.svg">
-  <img alt="Pilot ID: Tony, CS at The University of Tulsa with Math and AI minors, seeking a Summer 2027 AI/ML internship" src="pilot_id_light.svg" width="100%">
+  <img alt="Pilot ID: Tony, CS at The University of Tulsa with Math and AI minors, seeking a Summer 2027 AI/ML or software internship" src="pilot_id_light.svg" width="100%">
 </picture>
 
 <picture>
