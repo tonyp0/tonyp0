@@ -11,7 +11,7 @@ portrait_crop = [0.16, 0.41, 0.6, 0.78]
 # Up to 7 rows. A TELEMETRY row with live GitHub numbers is added after them.
 rows = [
   { label = "ROLE",       value = "CS @ The University of Tulsa · Math + AI minors" },
-  { label = "MISSION",    value = "Seeking a Summer 2027 AI/ML internship" },
+  { label = "MISSION",    value = "Seeking a Summer 2027 AI/ML or Software internship" },
   { label = "STACK",      value = "Python · Swift · SwiftUI · SwiftData" },
   { label = "TRAINING",   value = "PyTorch · scikit-learn" },
   { label = "FLIGHT HRS", value = "SWE Intern @ Cyphra Autonomy · UAV telemetry" },
