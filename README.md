@@ -26,12 +26,14 @@
 
 <!-- manifest:start -->
 <details>
-<summary><b>OPEN THE HANGAR MANIFEST</b>: every airframe above, with links</summary>
+<summary><b>🛩️ OPEN THE HANGAR MANIFEST</b> · 2 airframes · 1 in the air</summary>
 
-| AIRFRAME | LANG | STATUS | LAST PUSH | NOTE |
-|---|---|---|---|---|
-| [tonyp0](https://github.com/tonyp0/tonyp0) | Python | LIVE | 2026-10-09 | Config files for my GitHub profile. |
-| [Monetic](https://github.com/tonyp0/Monetic) | Swift | WARM | 2026-09-17 | Simple monthly budgeting app to support healthy finances and track your spending. |
+| # | AIRFRAME | POWERPLANT | STATUS | LAST SORTIE | BRIEFING |
+|:-:|:--|:-:|:-:|:-:|:--|
+| `01` | **[tonyp0](https://github.com/tonyp0/tonyp0)** | <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/> | <img src="https://img.shields.io/badge/%E2%97%8F%20LIVE-13846c?style=flat-square" alt="● LIVE"/> | `today` | This profile: Python-generated animated SVG cards, re-rendered hourly by GitHub Actions |
+| `02` | **[Monetic](https://github.com/tonyp0/Monetic)** ★2 | <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift"/> | <img src="https://img.shields.io/badge/%E2%97%90%20WARM-b26a00?style=flat-square" alt="◐ WARM"/> | `3w ago` | SwiftUI budgeting app that builds financial literacy for K-12 and college students |
+
+<sub>🟢 LIVE: pushed in the last 14 days · 🟠 WARM: last 60 days · ⚪ GROUNDED: older · sorted by most recent sortie</sub>
 
 </details>
 <!-- manifest:end -->
