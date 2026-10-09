@@ -15,17 +15,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from cards import hangar, hangar_repos, mission_log, pilot_id, portrait_png, repo_status, terrain  # noqa: E402
 from common import PALETTES  # noqa: E402
 from fetch import fetch  # noqa: E402
+from manifest import manifest_block  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-
-
-def manifest(data):
-    rows = ["| AIRFRAME | LANG | STATUS | LAST PUSH | NOTE |", "|---|---|---|---|---|"]
-    for r in sorted(data["repos"], key=lambda r: r["created"]):
-        note = (r["desc"] or "").replace("|", "\\|")
-        rows.append(f"| [{r['name']}]({r['url']}) | {r['lang'] or '—'} | {repo_status(r, data['today'])} "
-                    f"| {r['pushed']} | {note} |")
-    return "\n".join(rows)
 
 
 def main():
@@ -57,10 +49,9 @@ def main():
     readme = ROOT / "README.md"
     if readme.exists():
         text = readme.read_text(encoding="utf-8")
+        block = manifest_block(data, prof.get("repo_notes"))
         new = re.sub(r"(<!-- manifest:start -->).*?(<!-- manifest:end -->)",
-                     lambda m: f"{m.group(1)}\n<details>\n<summary><b>OPEN THE HANGAR MANIFEST</b>: "
-                               f"every airframe above, with links</summary>\n\n{manifest(data)}\n\n</details>\n"
-                               f"{m.group(2)}",
+                     lambda m: f"{m.group(1)}\n{block}\n{m.group(2)}",
                      text, flags=re.S)
         if new != text and not args.sample:
             readme.write_text(new, encoding="utf-8")

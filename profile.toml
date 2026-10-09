@@ -18,3 +18,8 @@ rows = [
   { label = "PAYLOAD",    value = "Monetic · budgeting app for K-12 + college" },
   { label = "CLASS OF",   value = "2029" },
 ]
+
+# Optional: override a repo's GitHub description in the hangar manifest.
+[repo_notes]
+Monetic = "SwiftUI budgeting app that builds financial literacy for K-12 and college students"
+tonyp0 = "This profile: Python-generated animated SVG cards, re-rendered hourly by GitHub Actions"
