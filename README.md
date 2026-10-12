@@ -30,7 +30,7 @@
 
 | # | AIRFRAME | POWERPLANT | STATUS | LAST SORTIE | BRIEFING |
 |:-:|:--|:-:|:-:|:-:|:--|
-| `01` | **[tonyp0](https://github.com/tonyp0/tonyp0)** | <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/> | <img src="https://img.shields.io/badge/%E2%97%8F%20LIVE-13846c?style=flat-square" alt="● LIVE"/> | `yesterday` | This profile: Python-generated animated SVG cards, re-rendered hourly by GitHub Actions |
+| `01` | **[tonyp0](https://github.com/tonyp0/tonyp0)** | <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/> | <img src="https://img.shields.io/badge/%E2%97%8F%20LIVE-13846c?style=flat-square" alt="● LIVE"/> | `today` | This profile: Python-generated animated SVG cards, re-rendered hourly by GitHub Actions |
 | `02` | **[Monetic](https://github.com/tonyp0/Monetic)** ★2 | <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift"/> | <img src="https://img.shields.io/badge/%E2%97%90%20WARM-b26a00?style=flat-square" alt="◐ WARM"/> | `3w ago` | SwiftUI budgeting app that builds financial literacy for K-12 and college students |
 
 <sub>🟢 LIVE: pushed in the last 14 days · 🟠 WARM: last 60 days · ⚪ GROUNDED: older · sorted by most recent sortie</sub>
