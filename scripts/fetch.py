@@ -50,12 +50,13 @@ def fetch_live(login, token, today=None):
       m{i}: contributionsCollection(from: "{s}T00:00:00Z", to: "{end}T00:00:00Z") {{
         totalCommitContributions
         totalPullRequestContributions
+        restrictedContributionsCount
         commitContributionsByRepository(maxRepositories: 10) {{
-          repository {{ name }} contributions {{ totalCount }}
+          repository {{ name isPrivate }} contributions {{ totalCount }}
         }}
         repositoryContributions(first: 10) {{
           totalCount
-          nodes {{ occurredAt repository {{ name primaryLanguage {{ name }} }} }}
+          nodes {{ occurredAt repository {{ name isPrivate primaryLanguage {{ name }} }} }}
         }}
       }}""")
 
@@ -64,10 +65,10 @@ def fetch_live(login, token, today=None):
       user(login: $login) {{
         login name avatarUrl
         followers {{ totalCount }}
-        repositories(first: 100, ownerAffiliations: OWNER, privacy: PUBLIC,
+        repositories(first: 100, ownerAffiliations: OWNER,
                      orderBy: {{field: CREATED_AT, direction: ASC}}) {{
           nodes {{
-            name description isFork diskUsage stargazerCount createdAt pushedAt url
+            name description isFork isPrivate diskUsage stargazerCount createdAt pushedAt url
             primaryLanguage {{ name }}
           }}
         }}
@@ -83,11 +84,28 @@ def fetch_live(login, token, today=None):
     }}"""
     u = _gql(query, {"login": login}, token)["user"]
 
+    # Private repos are counted but never named: each gets a stable codename by creation order.
+    nodes = [r for r in u["repositories"]["nodes"] if not r["isFork"]]
+    codename = {}
+    for r in nodes:
+        if r["isPrivate"]:
+            codename[r["name"]] = f"CLASSIFIED-{len(codename) + 1:02d}"
+
+    def public_name(repo):
+        if not repo:
+            return "CLASSIFIED"
+        if repo.get("isPrivate"):
+            return codename.get(repo["name"], "CLASSIFIED")
+        return repo["name"]
+
     repos = [
-        dict(name=r["name"], desc=r["description"] or "", lang=(r["primaryLanguage"] or {}).get("name"),
-             size_kb=r["diskUsage"] or 0, stars=r["stargazerCount"], created=r["createdAt"][:10],
-             pushed=(r["pushedAt"] or r["createdAt"])[:10], url=r["url"])
-        for r in u["repositories"]["nodes"] if not r["isFork"]
+        dict(name=public_name(r), private=r["isPrivate"],
+             desc="" if r["isPrivate"] else (r["description"] or ""),
+             lang=(r["primaryLanguage"] or {}).get("name"),
+             size_kb=r["diskUsage"] or 0, stars=0 if r["isPrivate"] else r["stargazerCount"],
+             created=r["createdAt"][:10], pushed=(r["pushedAt"] or r["createdAt"])[:10],
+             url=None if r["isPrivate"] else r["url"])
+        for r in nodes
     ]
 
     weeks = [[dict(date=d["date"], count=d["contributionCount"]) for d in w["contributionDays"]]
@@ -100,10 +118,10 @@ def fetch_live(login, token, today=None):
             month=s.strftime("%Y-%m"),
             commits=m["totalCommitContributions"],
             prs=m["totalPullRequestContributions"],
-            commit_repos=[dict(name=c["repository"]["name"] if c["repository"] else "private repo",
-                               commits=c["contributions"]["totalCount"])
+            restricted=m.get("restrictedContributionsCount", 0),
+            commit_repos=[dict(name=public_name(c["repository"]), commits=c["contributions"]["totalCount"])
                           for c in m["commitContributionsByRepository"]],
-            created=[dict(name=n["repository"]["name"],
+            created=[dict(name=public_name(n["repository"]),
                           lang=(n["repository"]["primaryLanguage"] or {}).get("name"),
                           date=n["occurredAt"][:10])
                      for n in m["repositoryContributions"]["nodes"] if n.get("repository")],

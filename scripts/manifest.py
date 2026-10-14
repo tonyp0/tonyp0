@@ -75,8 +75,12 @@ def manifest_block(data, notes=None):
             lang_cell = "—"
         label, color = STATUS[st]
         stars = f" ★{r['stars']}" if r["stars"] else ""
-        note = (notes.get(r["name"]) or r["desc"] or "—").replace("|", "\\|")
-        rows.append(f"| `{i:02d}` | **[{r['name']}]({r['url']})**{stars} | {lang_cell} | {badge(label, color)} "
+        if r.get("private"):
+            note, name_cell = "🔒 Private repository · details classified", f"**{r['name']}**"
+        else:
+            note = (notes.get(r["name"]) or r["desc"] or "—").replace("|", "\\|")
+            name_cell = f"**[{r['name']}]({r['url']})**"
+        rows.append(f"| `{i:02d}` | {name_cell}{stars} | {lang_cell} | {badge(label, color)} "
                     f"| `{ago(r['pushed'], today)}` | {note} |")
 
     return (

@@ -305,8 +305,9 @@ def hangar(data, prof, p, mode):
             light = p["amber"] if stt == "WARM" else None
             s.append(drone(p, round(cx, 1), round(pad_y - arm * 1.42 + 2, 1), round(arm, 1), color, spin=False, light=light))
         nc = p["accent"] if stt == "LIVE" else p["text"]
-        s.append(f'<a href="{esc(r["url"])}"><text x="{cx:.1f}" y="{ground + 20}" font-size="11" font-weight="bold" '
-                 f'text-anchor="middle" fill="{nc}">{esc(trunc(r["name"], chars - 1))}</text></a>')
+        label = f'<text x="{cx:.1f}" y="{ground + 20}" font-size="11" font-weight="bold" ' \
+                f'text-anchor="middle" fill="{nc}">{"🔒 " if r.get("private") else ""}{esc(trunc(r["name"], chars - 1))}</text>'
+        s.append(f'<a href="{esc(r["url"])}">{label}</a>' if r.get("url") else label)
         s.append(f'<text x="{cx:.1f}" y="{ground + 35}" font-size="8.5" text-anchor="middle" fill="{p["dim"]}">'
                  f'{esc(trunc((r["lang"] or "—") + " · " + fmt_size(r["size_kb"]), chars + 3))}</text>')
         star = f" · ★{r['stars']}" if r["stars"] else ""
@@ -350,6 +351,8 @@ def month_lines(m, width=30):
         lines.append(("main", f"› Launched {_plural(len(m['created']), 'new repo')}"))
         for r in m["created"][:2]:
             lines.append(("sub", f"  {r['name']} · {r['lang'] or '—'}"))
+    if m.get("restricted"):
+        lines.append(("main", f"› +{m['restricted']} classified contribs"))
     if m["prs"]:
         lines.append(("main", f"› {_plural(m['prs'], 'pull request')} opened"))
     if not lines:
