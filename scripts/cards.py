@@ -40,7 +40,7 @@ def portrait_png(path, crop, size, p, mode):
 # ───────────────────────── 01 PILOT ID ─────────────────────────
 
 def pilot_id(data, prof, p, mode, portrait_b64=None):
-    h = 340
+    h = 340 + 22 * max(0, min(len(prof["rows"]) + 1, 9) - 8)  # grow for a 9th row
     s = [svg_open(W, h, p, f"Pilot ID card for {prof['callsign']}: {prof['rows'][0]['value']}")]
 
     # window chrome
